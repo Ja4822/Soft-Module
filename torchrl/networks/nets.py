@@ -2,7 +2,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import torchrl.networks.init as init
+# import torchrl.networks.init as init
+from .init import *
 
 
 class ZeroNet(nn.Module):
@@ -15,8 +16,8 @@ class Net(nn.Module):
             self, output_shape,
             base_type,
             append_hidden_shapes=[],
-            append_hidden_init_func=init.basic_init,
-            net_last_init_func=init.uniform_init,
+            append_hidden_init_func=basic_init,
+            net_last_init_func=uniform_init,
             activation_func=F.relu,
             **kwargs):
 
@@ -73,8 +74,8 @@ class ModularGatedCascadeCondNet(nn.Module):
             add_bn = True,
             pre_softmax = False,
             cond_ob = True,
-            module_hidden_init_func = init.basic_init,
-            last_init_func = init.uniform_init,
+            module_hidden_init_func = basic_init,
+            last_init_func = uniform_init,
             activation_func = F.relu,
              **kwargs ):
 

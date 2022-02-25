@@ -2,10 +2,12 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-import torchrl.networks.init as init
+# import torchrl.networks.init as init
+from .init import *
+
 
 class MLPBase(nn.Module):
-    def __init__(self, input_shape, hidden_shapes, activation_func=F.relu, init_func = init.basic_init, last_activation_func = None ):
+    def __init__(self, input_shape, hidden_shapes, activation_func=F.relu, init_func = basic_init, last_activation_func = None ):
         super().__init__()
         
         self.activation_func = activation_func
@@ -49,7 +51,7 @@ def calc_next_shape(input_shape, conv_info):
     return (out_channels, h, w )
 
 class CNNBase(nn.Module):
-    def __init__(self, input_shape, hidden_shapes, activation_func=F.relu, init_func = init.basic_init, last_activation_func = None ):
+    def __init__(self, input_shape, hidden_shapes, activation_func=F.relu, init_func = basic_init, last_activation_func = None ):
         super().__init__()
         
         current_shape = input_shape

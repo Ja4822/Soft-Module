@@ -5,7 +5,8 @@ import numpy as np
 
 import torch
 
-import torchrl.algo.utils as atu
+# import torchrl.algo.utils as atu
+from .utils import *
 
 import gym
 
@@ -160,11 +161,11 @@ class RLAlgo():
     def _update_target_networks(self):
         if self.use_soft_update:
             for net, target_net in self.target_networks:
-                atu.soft_update_from_to(net, target_net, self.tau)
+                soft_update_from_to(net, target_net, self.tau)
         else:
             if self.training_update_num % self.target_hard_update_period == 0:
                 for net, target_net in self.target_networks:
-                    atu.copy_model_params_from_to(net, target_net)
+                    copy_model_params_from_to(net, target_net)
 
     @property
     def networks(self):
